@@ -157,3 +157,7 @@ Code review found that external cart updates did not hide an earlier order summa
 
 ## Additional finding - stale order summary
 When the user changed the cart after generating an order summary, the old summary could remain visible. The UI now hides the summary on local cart changes and payment selection changes. This is a separate UI state issue, but it has not been independently verified in a real browser on the published site; do not claim five verified errors on this basis alone.
+
+
+### Error 5 - Checkout Summary Visibility
+The checkout initially hid the Order Summary immediately after generating it because the payment reset function also changed the summary's visibility. This was corrected by separating payment-field reset from summary visibility. The fix was verified on the live GitHub Pages website: the Order Summary remained visible after checkout, and the cart total became ₹0. Status: VERIFIED AND FIXED — LIVE RETEST PASS.

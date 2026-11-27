@@ -312,3 +312,16 @@ yet been performed.
 **Evidence:** The missing invalidation was identified by inspecting `cart.js` in the supplied ZIP.
 
 **Verification status:** SOURCE-CODE FIX APPLIED; TWO-TAB BROWSER RETEST PENDING. Do not claim a fifth verified error until the reproduction and post-fix test are performed.
+
+
+## Entry 8 - AI Error #5: Checkout Summary Hidden Immediately
+
+**Issue:** The checkout handler displayed an Order Summary and then called `showPaymentFields()`, which hid the summary again.
+
+**Root cause:** The payment-selection helper also changed `summary.hidden` and was incorrectly reused during checkout reset.
+
+**Correction:** After checkout, reset the selected payment method and hide only the UPI/Card panels, without hiding the Order Summary.
+
+**Verification:** Browser regression test should confirm that the Order Summary remains visible, total is correct, and cart is empty.
+
+**Status:** VERIFIED AND FIXED - Live GitHub Pages checkout retest PASS. Order Summary remained visible and cart total became ₹0.
