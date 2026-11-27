@@ -60,7 +60,6 @@ try {
       cardName.value = ''; cardNumber.value = ''; cardExpiry.value = ''; cardCvv.value = '';
     }
     feedback.textContent = '';
-    if (!summary.hidden) summary.hidden = true;
   }
   paymentRadios.forEach(radio => radio.addEventListener('change', showPaymentFields));
   function validateTestCard() {
