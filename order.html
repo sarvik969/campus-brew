@@ -149,8 +149,28 @@
 </label>
 
 </fieldset>
-<button disabled="" id="checkoutCart" type="button">Place Order</button>
-<p class="checkout-disclosure">College website prototype: no real order or payment is processed.</p>
+<div id="upiDetails" class="payment-details" hidden>
+  <h3>UPI Payment</h3>
+  <div class="sample-qr" role="img" aria-label="Non-payable QR illustration for the payment interface">
+    <span class="qr-corner tl"></span><span class="qr-corner tr"></span><span class="qr-corner bl"></span>
+    <span class="qr-pattern"></span><strong>SAMPLE</strong>
+  </div>
+  <p>QR illustration only — no UPI payment can be made.</p>
+  <p class="payment-amount">Cart amount: <strong id="upiAmount">₹0</strong></p>
+</div>
+<div id="cardDetails" class="payment-details" hidden>
+  <h3>Card Details</h3>
+  <p>Use the provided example details only. Never enter a real card number or security code.</p>
+  <div class="card-fields">
+    <label for="cardName">Cardholder name<input id="cardName" autocomplete="off" placeholder="TEST USER" maxlength="60"></label>
+    <label for="cardNumber">Card number<input id="cardNumber" inputmode="numeric" autocomplete="off" placeholder="4242 4242 4242 4242" maxlength="19"></label>
+    <label for="cardExpiry">Expiry (MM/YY)<input id="cardExpiry" inputmode="numeric" autocomplete="off" placeholder="12/30" maxlength="5"></label>
+    <label for="cardCvv">Security code (example)<input id="cardCvv" inputmode="numeric" autocomplete="off" placeholder="123" maxlength="3"></label>
+  </div>
+  <p class="card-hint">Example details: TEST USER / 4242 4242 4242 4242 / 12/30 / 123</p>
+</div>
+<button disabled="" id="checkoutCart" type="button">Review Order</button>
+<p class="checkout-disclosure">College project interface: no real orders, messages or payments are processed.</p>
 <p aria-live="polite" class="cart-feedback" id="cartFeedback" role="status">
 </p><section aria-label="Order summary" aria-live="polite" class="order-summary" hidden="" id="orderSummary"></section>
 
@@ -209,8 +229,6 @@
 </div>
 
 <p class="prototype-note">© 2026 Campus Brew | All Rights Reserved</p>
-   </div>
 </footer>
 </body>
 </html>
- ̰

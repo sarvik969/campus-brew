@@ -32,7 +32,7 @@ const contact = document.getElementById('contactForm');
       }
       
 
-feedback.textContent = "Message form submitted successfully.";
+feedback.textContent = "Form checked successfully. No message was sent.";
 
 
       contact.reset();

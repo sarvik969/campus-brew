@@ -153,3 +153,7 @@ contact messages to a server.
 
 ## Error #5 Candidate — Stale Checkout Summary Across Tabs
 Code review found that external cart updates did not hide an earlier order summary. Added summary invalidation in the storage listener. **Browser reproduction/retest pending**; this is not yet counted as a verified fifth error.
+
+
+## Additional finding - stale order summary
+When the user changed the cart after generating an order summary, the old summary could remain visible. The UI now hides the summary on local cart changes and payment selection changes. This is a separate UI state issue, but it has not been independently verified in a real browser on the published site; do not claim five verified errors on this basis alone.

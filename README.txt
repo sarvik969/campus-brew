@@ -64,3 +64,11 @@ CAMPUS BREW
 Sip. Study. Repeat.
 
 FINAL REVIEW NOTE: Cart updates from another tab now hide outdated order summaries. Browser retest of this change remains pending.
+
+
+FINAL REVIEW NOTES (2026-11-27)
+- Payment selection and card example are simulations, not real payments.
+- The UPI QR illustration is not payable. Never enter real card credentials.
+- A stale order summary is now hidden when cart contents or payment selection change.
+- This project has no backend, order fulfillment or contact-message delivery.
+- Individual AI integrity submissions must reflect each member's actual work.

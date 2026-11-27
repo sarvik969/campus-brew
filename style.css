@@ -960,3 +960,20 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 @media(prefers-reduced-motion:reduce) { .payment-methods .payment-option { transition:none; transform:none!important; } }
 
 .checkout-disclosure {font-size: .78rem; color: #76665e; margin: 10px 0 18px; line-height: 1.5;}
+
+/* Payment method details */
+.payment-details { margin: 18px 0; padding: 22px; border: 1px solid #ead8c7; border-radius: 18px; background: #fff8ef; color: #3b241c; }
+.payment-details[hidden] { display: none !important; }
+.payment-details h3 { margin: 0 0 12px; }
+.sample-qr { width: 208px; height: 208px; position: relative; background: #fff; border: 12px solid #fff; border-radius: 10px; margin: 14px auto; box-shadow: 0 4px 20px #3b241c22; overflow: hidden; }
+.qr-pattern { position: absolute; inset: 9px; background: repeating-linear-gradient(45deg,#3b241c 0 6px,transparent 6px 13px),repeating-linear-gradient(-45deg,transparent 0 11px,#3b241c 11px 15px); opacity: .45; }
+.qr-corner { position: absolute; width: 46px; height: 46px; border: 9px solid #3b241c; background: white; z-index: 1; }
+.qr-corner.tl { left: 6px; top: 6px; } .qr-corner.tr { right: 6px; top: 6px; } .qr-corner.bl { left: 6px; bottom: 6px; }
+.sample-qr strong { position: absolute; z-index: 2; top: 46%; left: 13%; width: 74%; text-align: center; color: #a92c16; background: #fff; padding: 7px 0; letter-spacing: 2px; }
+.payment-amount { text-align: center; font-size: 18px; }
+.card-fields { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 14px; }
+.card-fields label { display: flex; flex-direction: column; gap: 6px; font-weight: 600; }
+.card-fields input { min-width: 0; width: 100%; box-sizing: border-box; padding: 13px; border: 1px solid #d7c5b5; border-radius: 10px; background: white; color: #3b241c; font-size: 15px; }
+.card-fields input:focus-visible { outline: 3px solid #ff6b35; outline-offset: 2px; }
+.card-hint { font-size: 13px; overflow-wrap: anywhere; }
+@media(max-width: 560px) { .card-fields { grid-template-columns: 1fr; } .payment-details { padding: 16px; } }

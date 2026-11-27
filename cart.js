@@ -44,6 +44,36 @@ try {
   const checkout = document.getElementById('checkoutCart');
   const feedback = document.getElementById('cartFeedback');
   const summary = document.getElementById('orderSummary');
+  const upiDetails = document.getElementById('upiDetails');
+  const cardDetails = document.getElementById('cardDetails');
+  const upiAmount = document.getElementById('upiAmount');
+  const cardName = document.getElementById('cardName');
+  const cardNumber = document.getElementById('cardNumber');
+  const cardExpiry = document.getElementById('cardExpiry');
+  const cardCvv = document.getElementById('cardCvv');
+  const paymentRadios = document.querySelectorAll('input[name="paymentMethod"]');
+  function showPaymentFields() {
+    const selected = document.querySelector('input[name="paymentMethod"]:checked');
+    upiDetails.hidden = !selected || selected.value !== 'UPI';
+    cardDetails.hidden = !selected || selected.value !== 'Card';
+    if (!selected || selected.value !== 'Card') {
+      cardName.value = ''; cardNumber.value = ''; cardExpiry.value = ''; cardCvv.value = '';
+    }
+    feedback.textContent = '';
+    if (!summary.hidden) summary.hidden = true;
+  }
+  paymentRadios.forEach(radio => radio.addEventListener('change', showPaymentFields));
+  function validateTestCard() {
+    const number = cardNumber.value.replace(/\s/g, '');
+    const valid = cardName.value.trim().toUpperCase() === 'TEST USER' &&
+      number === '4242424242424242' && cardExpiry.value.trim() === '12/30' &&
+      cardCvv.value.trim() === '123';
+    if (!valid) {
+      feedback.textContent = 'Use the example card details shown below the fields.';
+      cardName.focus();
+    }
+    return valid;
+  }
   const money = value => '₹' + value;
 
 window.addEventListener("storage", (event) => {
@@ -93,8 +123,6 @@ function saveCart() {
 }
 
   function render() {
-
-
     items.replaceChildren();
     let sum = 0;
     for (const [id, quantity] of cart) {
@@ -117,6 +145,7 @@ minus.addEventListener('click', () => {
   }
 
   feedback.textContent = '';
+  summary.hidden = true;
   saveCart();
   render();
 });
@@ -130,6 +159,7 @@ plus.addEventListener('click', () => {
 
   cart.set(id, quantity + 1);
   feedback.textContent = '';
+  summary.hidden = true;
   saveCart();
   render();
 });
@@ -138,6 +168,7 @@ plus.addEventListener('click', () => {
 remove.addEventListener('click', () => {
   cart.delete(id);
   feedback.textContent = product.name + ' removed.';
+  summary.hidden = true;
   saveCart();
   render();
 });
@@ -145,6 +176,7 @@ remove.addEventListener('click', () => {
       row.append(name,minus,count,plus,price,remove); items.append(row);
     }
     total.textContent = money(sum);
+    upiAmount.textContent = money(sum);
     checkout.disabled = cart.size === 0;
     if (cart.size === 0) {
       const empty = document.createElement('p'); empty.className = 'empty-cart'; empty.textContent = 'Your cart is empty. Add something delicious!'; items.append(empty);
@@ -167,6 +199,7 @@ summary.hidden = true;
     if (cart.size === 0) return;
     const payment = document.querySelector('input[name="paymentMethod"]:checked');
     if (!payment) {feedback.textContent='Please choose a payment method to continue.'; document.querySelector('input[name="paymentMethod"]').focus(); return;}
+    if (payment.value === 'Card' && !validateTestCard()) return;
     const sum = render();
     const lines = [...cart].map(([id,quantity]) => {
       const p=products.find(item=>item.id===id);
@@ -187,6 +220,8 @@ const note = document.createElement('p'); note.className = 'summary-note'; note.
 cart.clear();
 saveCart();
 payment.checked = false;
+showPaymentFields();
+cardName.value = ''; cardNumber.value = ''; cardExpiry.value = ''; cardCvv.value = '';
 feedback.textContent = '';
 render();
 
