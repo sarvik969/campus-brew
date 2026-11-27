@@ -214,16 +214,19 @@ summary.hidden = true;
 const note = document.createElement('p'); note.className = 'summary-note'; note.textContent = 'Order summary generated.';
 
 
-    summary.append(heading,list,grand,method,note); summary.hidden=false;
+    summary.append(heading,list,grand,method,note);
     
 cart.clear();
 saveCart();
 payment.checked = false;
-showPaymentFields();
+upiDetails.hidden = true;
+cardDetails.hidden = true;
 cardName.value = ''; cardNumber.value = ''; cardExpiry.value = ''; cardCvv.value = '';
 feedback.textContent = '';
 render();
 
+    // Reveal only after the cart and payment UI have finished resetting.
+    summary.hidden = false;
     summary.scrollIntoView({behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',block:'nearest'});
   });
   render();
